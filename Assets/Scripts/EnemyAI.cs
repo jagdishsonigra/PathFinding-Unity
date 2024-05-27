@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public interface IAI
+{
+    void Initialize(Tile initialTile, PlayerController player);
+}
+
+public class EnemyAI : MonoBehaviour, IAI
 {
     private Tile currentTile;
     private PlayerController player;
