@@ -59,14 +59,15 @@
     <UnityVersion>2021.3.34f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets/Scripts/ObstacleManager.cs" />
+    <Compile Include="Assets/Scripts/ObstacleData.cs" />
+    <Compile Include="Assets/Scripts/EventManager.cs" />
+    <Compile Include="Assets/Scripts/EnemyAI.cs" />
     <Compile Include="Assets/Scripts/Tile.cs" />
     <Compile Include="Assets/Scripts/GridGenerator.cs" />
     <Compile Include="Assets/Scripts/TileInfoDisplay.cs" />
-    <Compile Include="Assets/Scripts/ObstacleData.cs" />
-    <Compile Include="Assets/Scripts/ObstacleManager.cs" />
     <Compile Include="Assets/Scripts/Pathfinding.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
-    <Compile Include="Assets/Scripts/EnemyAI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

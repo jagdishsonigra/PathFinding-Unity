@@ -13,6 +13,8 @@ public class Tile : MonoBehaviour
     public int x, y;
     public bool isBlocked = false;
     public bool IsOccupied { get; set; } // Property to indicate if the tile is occupied
+    public bool IsWalkable => !isBlocked && !IsOccupied; // Define walkability
+
     public Tile parent; // For pathfinding
 
     public int gCost;

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Obstacle
   - Enemy
+  - Tile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - TileLayer
   - Water
   - UI
   - 

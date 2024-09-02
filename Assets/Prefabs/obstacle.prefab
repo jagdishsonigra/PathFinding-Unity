@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8447490992414440933}
   - component: {fileID: 934091329735595807}
-  - component: {fileID: 8831489416403526132}
+  - component: {fileID: 3930520972563873035}
   m_Layer: 0
   m_Name: obstacle
   m_TagString: Obstacle
@@ -42,8 +42,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2198489302756565710}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!135 &8831489416403526132
-SphereCollider:
+--- !u!65 &3930520972563873035
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -53,8 +53,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.22940943, z: 1}
+  m_Center: {x: 0, y: -0.38529527, z: 0}
 --- !u!1 &4124437091816381109
 GameObject:
   m_ObjectHideFlags: 0

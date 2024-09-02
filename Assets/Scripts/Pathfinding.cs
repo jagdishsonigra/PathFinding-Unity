@@ -20,11 +20,20 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    private Tile[,] grid; // 2D array to store references to tiles in the grid
+    private Tile[,] grid;
+    private List<Tile> blockedTiles = new List<Tile>();
 
     public void InitializeTiles(Tile[,] tiles)
     {
         grid = tiles;
+        Debug.Log("Tiles initialized.");
+    }
+
+    public void UpdateBlockedTiles(Tile enemyTile)
+    {
+        blockedTiles.Clear();
+        // Add the tile occupied by the enemy to the blocked list
+        blockedTiles.Add(enemyTile);
     }
 
     public List<Tile> FindPath(Tile startTile, Tile targetTile)
@@ -39,7 +48,7 @@ public class Pathfinding : MonoBehaviour
             Tile currentTile = openSet[0];
             for (int i = 1; i < openSet.Count; i++)
             {
-                if (openSet[i].FCost < currentTile.FCost || openSet[i].FCost == currentTile.FCost && openSet[i].hCost < currentTile.hCost)
+                if (openSet[i].FCost < currentTile.FCost || (openSet[i].FCost == currentTile.FCost && openSet[i].hCost < currentTile.hCost))
                 {
                     currentTile = openSet[i];
                 }
@@ -50,12 +59,13 @@ public class Pathfinding : MonoBehaviour
 
             if (currentTile == targetTile)
             {
+                Debug.Log("Path found from " + startTile + " to " + targetTile);
                 return RetracePath(startTile, targetTile);
             }
 
             foreach (Tile neighbor in GetNeighbors(currentTile))
             {
-                if (closedSet.Contains(neighbor) || neighbor.isBlocked)
+                if (closedSet.Contains(neighbor) || neighbor.isBlocked || neighbor.IsOccupied || blockedTiles.Contains(neighbor))
                 {
                     continue;
                 }
@@ -75,6 +85,7 @@ public class Pathfinding : MonoBehaviour
             }
         }
 
+        Debug.Log("No path available from " + startTile + " to " + targetTile);
         return null; // No path found
     }
 
@@ -103,40 +114,23 @@ public class Pathfinding : MonoBehaviour
     {
         List<Tile> neighbors = new List<Tile>();
 
-        if (tile.x > 0 && !IsEnemyOccupied(tile.x - 1, tile.y)) // Left
+        if (tile.x > 0)
         {
             neighbors.Add(grid[tile.x - 1, tile.y]);
         }
-        if (tile.x < grid.GetLength(0) - 1 && !IsEnemyOccupied(tile.x + 1, tile.y)) // Right
+        if (tile.x < grid.GetLength(0) - 1)
         {
             neighbors.Add(grid[tile.x + 1, tile.y]);
         }
-        if (tile.y > 0 && !IsEnemyOccupied(tile.x, tile.y - 1)) // Down
+        if (tile.y > 0)
         {
             neighbors.Add(grid[tile.x, tile.y - 1]);
         }
-        if (tile.y < grid.GetLength(1) - 1 && !IsEnemyOccupied(tile.x, tile.y + 1)) // Up
+        if (tile.y < grid.GetLength(1) - 1)
         {
             neighbors.Add(grid[tile.x, tile.y + 1]);
         }
 
         return neighbors;
-    }
-
-    bool IsEnemyOccupied(int x, int y)
-    {
-        // Check if there is an enemy at the specified position
-        GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
-        if (enemy != null)
-        {
-            Vector3 enemyPos = enemy.transform.position;
-            int enemyX = Mathf.RoundToInt(enemyPos.x);
-            int enemyY = Mathf.RoundToInt(enemyPos.z);
-            if (enemyX == x && enemyY == y)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }

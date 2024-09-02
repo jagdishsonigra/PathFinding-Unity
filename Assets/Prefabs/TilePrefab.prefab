@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5870679552123770374}
   - component: {fileID: 7405170477380026623}
   - component: {fileID: 5681009313154144522}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TilePrefab
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,3 +113,6 @@ MonoBehaviour:
   x: 0
   y: 0
   isBlocked: 0
+  parent: {fileID: 0}
+  gCost: 0
+  hCost: 0
